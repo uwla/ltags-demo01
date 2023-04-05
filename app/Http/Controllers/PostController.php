@@ -12,7 +12,20 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        return Post::withTags(Post::all());
+    }
+
+    /**
+     * Display resources tagged by the requested tags.
+     */
+    public function taggedBy(Request $request)
+    {
+        $rules = [
+            'tags'   => 'required|array|max:10|min:1',
+            'tags.*' => 'string|max:100|min:1',
+        ];
+        $request->validate($rules);
+        return Post::withTags(Post::taggedBy($request->tags));
     }
 
     /**
