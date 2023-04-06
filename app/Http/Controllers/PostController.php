@@ -29,6 +29,19 @@ class PostController extends Controller
     }
 
     /**
+     * Display resources tagged by the requested tags.
+     */
+    public function taggedByAll(Request $request)
+    {
+        $rules = [
+            'tags'   => 'required|array|max:20|min:1',
+            'tags.*' => 'string|max:100|min:1',
+        ];
+        $request->validate($rules);
+        return Post::withTags(Post::taggedByAll($request->tags));
+    }
+
+    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)

@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::apiResource('post', PostController::class);
 Route::post('/post/tagged', [PostController::class, 'taggedBy']);
+Route::post('/post/tagged_all', [PostController::class, 'taggedByAll']);
