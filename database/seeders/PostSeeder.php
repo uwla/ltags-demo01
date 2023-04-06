@@ -13,7 +13,7 @@ class PostSeeder extends Seeder
      */
     public function run(): void
     {
-        $posts = Post::factory(100)->create();
+        $posts = Post::factory(200)->create();
         $tags = Tag::all();
         $n = $tags->count();
         $m = (int) ($n / 3);
